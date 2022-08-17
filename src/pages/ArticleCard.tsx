@@ -17,11 +17,13 @@ import { getArticleById } from '../utils/api';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import CommentList from '../components/CommentList';
+import { getFormattedDate } from '../utils/formatDate';
 
 export default function ArticleCard() {
   const [article, setArticle] = useState([]);
   const [imageUrl, setImageUrl] = useState('');
   const [isLoading, setIsloading] = useState(false);
+  const [humanDate, setHumanDate] = useState();
   const router = useRouter();
   const query = router.query;
   const article_id = query.article_id;
@@ -31,10 +33,11 @@ export default function ArticleCard() {
       setArticle(ArticleFromApi);
       if (article.topic === "Football") setImageUrl("https://jdwd40.tech/wp-content/uploads/2022/08/thomas-serer-r-xKieMqL34-unsplash.jpg");
       if (article.topic === "Coding") setImageUrl("https://jdwd40.tech/wp-content/uploads/2022/08/kevin-ku-w7ZyuGYNpRQ-unsplash.jpg");
+
     });
   }, [article_id]);
 
-
+console.log(article.created_at);
   return (
     <>
       <Container maxW={'7xl'} p="12">
@@ -58,7 +61,7 @@ export default function ArticleCard() {
               ></Image>
 
               <Text
-                color={'green.500'}
+                color={'white'}
                 textTransform={'uppercase'}
                 fontWeight={800}
                 fontSize={'md'}
@@ -67,13 +70,13 @@ export default function ArticleCard() {
                 {article.topic}
               </Text>
               <Heading
-                color={useColorModeValue('gray.700', 'white')}
+                color={'green.500'}
                 fontSize={'4xl'}
                 fontFamily={'body'}
               >
                 {article.title}
               </Heading>
-              <Text color={'gray.500'}>{article.body}</Text>
+              <Text color={useColorModeValue('gray.700', 'white')}>{article.body}</Text>
             </Stack>
             <Stack mt={6} direction={'row'} spacing={4} align={'center'}>
               <Avatar
@@ -81,8 +84,8 @@ export default function ArticleCard() {
                 alt={'Author'}
               />
               <Stack direction={'column'} spacing={0} fontSize={'sm'}>
-                <Text fontWeight={600}>Achim Rolle</Text>
-                <Text color={'gray.500'}>Feb 08, 2021 · 6min read</Text>
+                <Text fontWeight={600}>{article.author}</Text>
+                <Text color={'gray.500'}>Created on {getFormattedDate(article.created_at)}</Text>
               </Stack>
             </Stack>
           </Box>

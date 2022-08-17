@@ -15,11 +15,14 @@ import {
   UnorderedList,
   ListItem,
   Flex,
+  Button
 } from '@chakra-ui/react';
 import NavBar from '../components/NavBar';
 import { useState, useEffect } from 'react';
 import { getArticles } from '../utils/api';
 import { useRouter } from 'next/router';
+import {getFormattedDate } from '../utils/formatDate';
+import { FaRegThumbsUp } from 'react-icons/fa';
 
 interface IBlogTags {
   tags: Array<string>;
@@ -87,26 +90,36 @@ const ArticleList = () => {
           <UnorderedList styleType="none">
             {articles.map((article) => {
               return (
-                <Box
-                  boxShadow={'2xl'}
-                  rounded={'md'}
-                  bg={useColorModeValue('white', 'gray.900')}
-                
-                  
-                >
-                  <ListItem key={article.article_id}>
+                <ListItem key={article.article_id}>
+                    <Box
+                      boxShadow={'2xl'}
+                      rounded={'md'}
+                      bg={useColorModeValue('white', 'gray.900')}
+                    >
                     <Link
                       href={`/ArticleCard?article_id=${article.article_id}`}
                     >
                       <Heading fontSize="2xl" p={3} color="green.500">
                         {article.title}
                       </Heading>
-                      <Text mb={4} p={3} pt={-1} pb={3} noOfLines={3}>
+                      <Text pl={3} mb={3} pr={2} noOfLines={3}>
                         {article.body}
                       </Text>
                     </Link>
-                  </ListItem>
                 </Box>
+               
+              <HStack mb={2} fontSize="sm">
+                <Button size="xs" colorScheme={'green'}
+                 leftIcon={<FaRegThumbsUp />}
+                 ml={1} mb={1}
+                >Like</Button>
+                <Text m={3}>Likes {article.votes}</Text>
+                <Text m={3}>Comment count: {article.comment_count}</Text>
+                <Text size="xs" as="i" >Created on {getFormattedDate(article.created_at)}</Text>
+
+              </HStack>
+              <Divider mb={3}/>
+                  </ListItem>
               );
             })}
           </UnorderedList>
