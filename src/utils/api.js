@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const newsApi = axios.create({
-    //  baseURL: 'https://nc-news-ex1.herokuapp.com/api/',
-     baseURL: 'http://localhost:9090/api',
+    baseURL: 'https://nc-news-ex1.herokuapp.com/api/',
+    // baseURL: 'http://localhost:9090/api',
     });
 
 export const getArticles = async (topic) => {
@@ -25,3 +25,12 @@ export const getArticles = async (topic) => {
       return comments;
   };
   
+  export const postCommentByArticleId = async (article_id, comment) => {
+    const postComment = {};
+    postComment.body = comment;
+    postComment.username = 'grumpy19';
+    const { data } = await newsApi
+      .post(`/articles/${article_id}/comments`, postComment);
+    console.log(data);
+    return data;
+  };

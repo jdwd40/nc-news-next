@@ -22,7 +22,6 @@ import { useState, useEffect } from 'react';
 import { getArticles } from '../utils/api';
 import { useRouter } from 'next/router';
 import {getFormattedDate } from '../utils/formatDate';
-import { FaRegThumbsUp } from 'react-icons/fa';
 
 interface IBlogTags {
   tags: Array<string>;
@@ -76,13 +75,12 @@ const ArticleList = () => {
     });
   }, [topic]);
 
+ 
   console.log('articles: ', articles);
   return (
     <>
-      <Container maxW={'7xl'} p="12">
         <NavBar />
-
-        <Heading as="h2" marginTop="5">
+        <Heading as="h2" marginTop="5" ml={5}>
           Latest Articles {topic}
         </Heading>
         <Divider marginTop="5" />
@@ -97,7 +95,7 @@ const ArticleList = () => {
                       bg={useColorModeValue('white', 'gray.900')}
                     >
                     <Link
-                      href={`/ArticleCard?article_id=${article.article_id}`}
+                      href={`/DisplayArticle?article_id=${article.article_id}&votes=${article.votes}`}
                     >
                       <Heading fontSize="2xl" p={3} color="green.500">
                         {article.title}
@@ -106,17 +104,13 @@ const ArticleList = () => {
                         {article.body}
                       </Text>
                     </Link>
-                </Box>
-               
+                </Box>    
               <HStack mb={2} fontSize="sm">
-                <Button size="xs" colorScheme={'green'}
-                 leftIcon={<FaRegThumbsUp />}
-                 ml={1} mb={1}
-                >Like</Button>
                 <Text m={3}>Likes {article.votes}</Text>
-                <Text m={3}>Comment count: {article.comment_count}</Text>
+                <Text m={3}>Comments {article.comment_count}</Text>
+                <Text m={3} ml={8}>Author: </Text>
+                <Text color="green">{article.author}</Text>
                 <Text size="xs" as="i" >Created on {getFormattedDate(article.created_at)}</Text>
-
               </HStack>
               <Divider mb={3}/>
                   </ListItem>
@@ -124,7 +118,6 @@ const ArticleList = () => {
             })}
           </UnorderedList>
         </VStack>
-      </Container>
     </>
   );
 };

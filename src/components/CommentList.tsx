@@ -18,6 +18,7 @@ import { getFormattedDate } from '../utils/formatDate';
 const CommentList = (props) => {
   const [comments, setComments] = useState([]);
   const article_id = props.article_id;
+  console.log(' CommentList: ', article_id);
 
   useEffect(() => {
     getCommentsById(article_id).then((commentsFromApi) => {
@@ -60,41 +61,28 @@ const CommentList = (props) => {
                     p={2}
                     m={3}
                   >
-                    <Text color="white">{comment.body}</Text>
                     <HStack
-                      mt={6}
+                      mt={2}
                       direction={'row'}
-                      spacing={4}
+                      spacing={2}
                       align={'right'}
-                      p={2}
+                      p={1}
                     >
                       <Stack direction={'row'} align={'right'}>
                         <Avatar
                           src={
                             'https://avatars0.githubusercontent.com/u/1164541?v=4'
                           }
-                          alt={'Author'}
                           size="xs"
                         />
-                        <Stack direction={'column'} spacing={0} fontSize={'sm'}>
+                        <Stack direction={'column'} spacing={0} fontSize={'xs'}>
                           <Text as="i" fontWeight={600}>
                             {comment.author}
                           </Text>
                         </Stack>
-                        <Box
-                          justifyItems={'right'}
-                          display="flex"
-                          alignItems={'right'}
-                        >
-                          <HStack
-                            display={'flex'}
-                            alignItems={'right'}
-                            spacing={0}
-                            fontSize={'sm'}
-                          ></HStack>
-                        </Box>
                       </Stack>
                     </HStack>
+                    <Text color="white">{comment.body}</Text>
                   </Box>
                   <HStack fontSize={'sm'}>
                     <Button
@@ -103,10 +91,12 @@ const CommentList = (props) => {
                       size="xs"
                       m={3}
                     >
-                      <Text fontWeight={600}>Up Vote</Text>
+                      <Text fontWeight={600}>Like</Text>
                     </Button>
                     <Text>Likes {comment.votes}</Text>
-                    <Text as="i" >Created on {getFormattedDate(comment.created_at)}</Text>
+                    <Text as="i">
+                      Created on {getFormattedDate(comment.created_at)}
+                    </Text>
                   </HStack>
                 </ListItem>
               );
