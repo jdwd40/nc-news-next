@@ -21,16 +21,15 @@ import { Footer } from '../components/Footer';
 import NavBar from '../components/NavBar';
 
 const Index = () => (
-<>
+  <>
     <NavBar />
     <Hero />
-    <VStack maxWidth={'7xl'}>
+    <VStack>
       <Text p={2}>
         Nc News is a small demonstration app that was build as part of a project
-        at Northcoders. </Text>
-        <Text p={3}>
-        A user should be able to do the following:
+        at Northcoders.{' '}
       </Text>
+      <Text p={3}>A user should be able to do the following:</Text>
 
       <UnorderedList>
         <ListItem>Log in as an exsiting user</ListItem>
@@ -40,11 +39,10 @@ const Index = () => (
         <ListItem>Create a new user</ListItem>
       </UnorderedList>
 
+      <Text p={2}>NC News was built with Next.js and Chackra UI. </Text>
+
       <Text p={2}>
-        NC News was built with Next.js and Chackra UI. </Text>
-        
-      <Text p={2}>For the backend I created
-        a small demo API with node and express.js
+        For the backend I created a small demo API with node and express.js
       </Text>
       <Image
         src="https://jdwd40.tech/wp-content/uploads/2022/08/wp1-8.jpg"
@@ -53,11 +51,10 @@ const Index = () => (
         borderRadius="10%"
       ></Image>
       <Text>Next ❤️ Chakra</Text>
-    <CTA />
+      <CTA />
       <Footer />
     </VStack>
-    </>
- 
+  </>
 );
 
 export default Index;

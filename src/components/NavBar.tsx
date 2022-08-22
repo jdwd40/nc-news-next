@@ -47,17 +47,17 @@ export default function Simple() {
             size={'md'}
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
             aria-label={'Open Menu'}
-            display={{ md: 'none' }}
+            display={{ sm: 'none' }}
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={'center'}>
             <Box>
-              <Link href="/">NC News</Link>
+              <Link textDecoration='none' href="/">NC News</Link>
             </Box>
             <HStack
               as={'nav'}
               spacing={8}
-              display={{ base: 'none', md: 'flex' }}
+              display={{ base: 'none', sm: 'flex' }}
             >
               {Links.map((link) => (
                 <NavLink key={link}>{link}</NavLink>
@@ -83,17 +83,17 @@ export default function Simple() {
                 />
             </MenuButton>
             <MenuList>
-              <MenuItem>Link 1</MenuItem>
-              <MenuItem>Link 2</MenuItem>
+              <MenuItem>Profile</MenuItem>
+              <MenuItem>Log In</MenuItem>
               <MenuDivider />
-              <MenuItem>Link 3</MenuItem>
+              <MenuItem>Log out</MenuItem>
             </MenuList>
           </Menu>
                 </Flex>
         </Flex>
 
         {isOpen ? (
-          <Box pb={4} display={{ md: 'none' }}>
+          <Box pb={4} display={{ sm: 'none' }}>
             <Stack as={'nav'} spacing={4}>
               {Links.map((link) => (
                 <NavLink key={link}>{link}</NavLink>

@@ -100,7 +100,7 @@ const ArticleList = () => {
                       <Heading fontSize="2xl" p={3} color="green.500">
                         {article.title}
                       </Heading>
-                      <Text pl={3} mb={3} pr={2} noOfLines={3}>
+                      <Text paddingLeft={3} pb={2} mb={3} pr={2} noOfLines={4}>
                         {article.body}
                       </Text>
                     </Link>

@@ -9,6 +9,7 @@ import {
   Avatar,
   HStack,
   Button,
+  useColorModeValue
 } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 import { getCommentsById } from '../utils/api';
@@ -32,7 +33,7 @@ const CommentList = (props) => {
       <Box
         maxW={'100%'}
         w={'full'}
-        bg={'gray.700'}
+        bg={useColorModeValue('white', 'gray.900')}
         boxShadow={'2xl'}
         rounded={'md'}
         p={6}
@@ -55,7 +56,7 @@ const CommentList = (props) => {
                 <ListItem>
                   <Box
                     w={'full'}
-                    bg={'gray.600'}
+                    bg={useColorModeValue('whiteAlpha.500', 'gray.600')}
                     boxShadow={'2xl'}
                     rounded={'md'}
                     p={2}
@@ -82,7 +83,7 @@ const CommentList = (props) => {
                         </Stack>
                       </Stack>
                     </HStack>
-                    <Text color="white">{comment.body}</Text>
+                    <Text color={useColorModeValue('gray.800', 'white')}>{comment.body}</Text>
                   </Box>
                   <HStack fontSize={'sm'}>
                     <Button
