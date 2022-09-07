@@ -22,6 +22,7 @@ import { useState, useEffect } from 'react';
 import { getArticles } from '../utils/api';
 import { useRouter } from 'next/router';
 import {getFormattedDate } from '../utils/formatDate';
+import Loading from '../components/Loading';
 
 interface IBlogTags {
   tags: Array<string>;
@@ -69,18 +70,22 @@ const ArticleList = () => {
   const query = router.query;
   const topic = query.topic;
 
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
+    setLoading(true);
     getArticles(topic).then((selectedArticlesFromApi) => {
       setArticles(selectedArticlesFromApi);
+    setLoading(false);
     });
   }, [topic]);
 
+  if (loading) return <Loading />
  
-  console.log('articles: ', articles);
   return (
     <>
         <NavBar />
-        <Heading as="h2" marginTop="5" ml={5}>
+        <Heading as="h2" marginTop="5" ml={5} bgGradient="linear(to-l, heroGradientStart, heroGradientEnd)"
+    bgClip="text">
           Latest Articles {topic}
         </Heading>
         <Divider marginTop="5" />

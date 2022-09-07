@@ -83,9 +83,9 @@ export default function Simple() {
                 />
             </MenuButton>
             <MenuList>
-              <MenuItem>Profile</MenuItem>
-              <MenuItem>Log In</MenuItem>
-              <MenuDivider />
+              <MenuItem>Sign Up</MenuItem>
+              <Link href='/SignIn'><MenuItem>Log In</MenuItem>
+              <MenuDivider /></Link>
               <MenuItem>Log out</MenuItem>
             </MenuList>
           </Menu>

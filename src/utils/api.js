@@ -21,7 +21,6 @@ export const getArticles = async (topic) => {
   export const getCommentsById = async (article_id) => {
     const { data } = await newsApi.get(`/articles/${article_id}/comments`);
       const { comments } = data;
-      console.log(' from comments >>>> ', comments);
       return comments;
   };
   
@@ -31,7 +30,6 @@ export const getArticles = async (topic) => {
     postComment.username = 'grumpy19';
     const { data } = await newsApi
       .post(`/articles/${article_id}/comments`, postComment);
-    console.log(data);
     return data;
   };
 

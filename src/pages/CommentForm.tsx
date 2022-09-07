@@ -26,6 +26,7 @@ const CommentForm = () => {
 
   const handleChange = (e) => {
     setComment((currComment) => {
+     // @ts-ignore
       let newComment = { ...currComment };
       newComment = e.target.value;
       return newComment;

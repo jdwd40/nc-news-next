@@ -8,11 +8,6 @@ const PostComment = (props) => {
     const article_id = props.article_id;
     const [votes, setVotes] = useState(props.votes);
     
-    // useEffect(()=> {
-    //   setVotes(props.votes);
-    //   console.log('votes ',votes);
-    // }, [votes]);
-
     const handleVoteClick = async () => {
       console.log("vote button clicked!!!!!");
       const currentVotes = await changeVotes(article_id, 1);
